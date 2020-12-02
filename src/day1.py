@@ -1,8 +1,10 @@
+from itertools import combinations
+from functools import reduce
 nums = []
-with open('./input/day1.txt') as f:
-    for line in f.readlines():
-        nums.append(int(line.strip()))
-for i, num1 in enumerate(nums):
-    for j, num2 in enumerate(nums):
-        if i != j and (num1 + num2) == 2020:
-            print(num1 * num2)
+pair_length = 3
+target = 2020
+input_location = './input/day1.txt'
+with open(input_location) as f:
+    nums = [int(line.strip()) for line in f.readlines()]
+magic_number = [reduce((lambda a, b: a*b), x) for x in combinations(nums,pair_length) if sum(x) == target]
+print(magic_number)
