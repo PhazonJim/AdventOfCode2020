@@ -1,8 +1,6 @@
 input_location = './input/day3.txt'
-forest = []
 with open(input_location) as f:
-    for line in f:
-        forest.append([char for char in line.strip()])
+    forest = [line.strip() for line in f.readlines()]
 slopes = [(1,1),(3,1),(5,1),(7,1),(1,2)]
 total = 1
 for slope in slopes:
