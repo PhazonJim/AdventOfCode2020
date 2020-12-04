@@ -9,29 +9,18 @@ vals = {
     'ecl': r'amb|blu|brn|gry|grn|hzl|oth', 
     'pid': r'\d{9}'
 }
-    # for regex in regexes:
-    #     if (re.search(regexes[regex], flair)):
-    #         return regex
 with open(input_location) as f:
-    data = f.read()
-mlist = data.split('\n\n')
+    chunks = f.read().split('\n\n')
+    documents = [{k: v for (k,v) in [kv.split(':') for kv in chunk.split()]} for chunk in chunks]
 total = 0
-for item in mlist:
-    mdict = {}
-    for el in item.split():
-        key, val = el.split(':')
-        mdict[key] = val
+for document in documents:
     good = True
     for field in vals.keys():
-        if field not in mdict.keys():
+        if field not in document.keys():
             good = False
         else:
-            res = re.fullmatch(vals[field], mdict[field])
-            if not res:
-                print(field)
-                print(mdict[field]+'\n')
+            if not re.fullmatch(vals[field], document[field]):
                 good = False
-            
     if good:
         total+=1
 print (total)
