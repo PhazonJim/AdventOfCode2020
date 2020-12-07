@@ -22,9 +22,9 @@ for seat in seats:
     col = get_pos(cols, seat, 7)
     plane[row][col] = row*8+col
 
-print(max(list(chain(*plane))))
+flat = list(chain(*plane))
+print(max(flat))
 
-flat_plane = list(chain(*plane))
-for i, seat in enumerate(flat_plane):
-    if seat == 0 and flat_plane[i-1] and flat_plane[i+1]:
+for i, seat in enumerate(flat):
+    if seat == 0 and flat[i-1] and flat[i+1]:
         print (i)
