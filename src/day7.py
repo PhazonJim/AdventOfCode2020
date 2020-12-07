@@ -40,6 +40,11 @@ def sum_bags(rule):
             res += prev * factor
         return res    
 
-total = 0
-total += sum_bags('shiny gold') # Part 1 uses can_hold_gold
-print (total-1)
+total1 = 0
+total2 = -1
+# Part 1
+for rule in rules:
+    total1 += can_hold_gold(rule)
+total2 += sum_bags('shiny gold') # Part 1 uses can_hold_gold
+print (total1)
+print (total2)
