@@ -18,6 +18,9 @@ for i in range(0, len(ops)-1):
         ops_c[i][0] = 'jmp'
     while True:
         if not ops_c[index]:
+            # Uncomment for Part 1
+            # print(acc) 
+            # exit()
             break
         else:
             command = ops_c[index][0]
